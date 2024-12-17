@@ -1,26 +1,23 @@
 import mongoose, { Document, Schema } from "mongoose";
 
 export interface IGreenhouseReadings {
-    timestamp: String;
-    temperatura: Number;
-    humedad: Number;
-    luminosidad: Number;
-    concentracionGas: Number;
-    estadoRiego: Boolean;
-    estadoVentilador: Boolean;
-    estadoLuzLed: Boolean;
-    dispositivo: String;
+    temperature: Number;
+    humidity: Number[];
+    luminosity: Number;
+    gas_concentration: Number;
+    watering_status: Boolean;
+    fan_status: Boolean;
+    light_status: Boolean;
 }
 
 const GreenhouseReadingsSchema: Schema = new Schema({
-    temperatura: { type: Number },
-    humedad: { type: Number },
-    luminosidad: Number,
-    concentracionGas: Number,
-    estadoRiego: { type: Boolean, default: false },
-    estadoVentilador: { type: Boolean, default: false },
-    estadoLuzLed: { type: Boolean, default: false },
-    dispositivo: { type: Schema.Types.ObjectId, ref: "Dispositivo" },
+    temperature: { type: Number },
+    humidity: { type: Array },
+    luminosity: Number,
+    gas_concentration: Number,
+    watering_status: { type: String, enum: ["on", "off"] },
+    fan_status: { type: String, enum: ["on", "off"] },
+    light_status: { type: String, enum: ["on", "off"] },
     createdAt: { type: Date, default: Date.now },
     editedAt: { type: Date },
     deletedAt: { type: Date },
