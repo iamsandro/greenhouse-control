@@ -4,6 +4,8 @@ export interface IGreenhouseReadings {
     temperature: Number;
     humidity: Number[];
     luminosity: Number;
+    water_consumed: Number;
+    water_rate: Number;
     gas_concentration: Number;
     watering_status: Boolean;
     fan_status: Boolean;
@@ -15,6 +17,8 @@ const GreenhouseReadingsSchema: Schema = new Schema({
     humidity: { type: Array },
     luminosity: Number,
     gas_concentration: Number,
+    water_consumed: Number,
+    water_rate: Number,
     watering_status: { type: String, enum: ["on", "off"] },
     fan_status: { type: String, enum: ["on", "off"] },
     light_status: { type: String, enum: ["on", "off"] },
