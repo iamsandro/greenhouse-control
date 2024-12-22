@@ -1,10 +1,26 @@
 import app from "./app";
 import dotenv from "dotenv";
+import { WebSocketServer } from "ws";
+import http from "http";
 
 dotenv.config();
 
-const PORT: string | number = process.env.PORT || 5000;
+const PORT: number = process.env.PORT ? +process.env.PORT : 5000;
 
-app.listen(PORT, () => {
-    console.log(`Servidor corriendo en el puerto ${PORT}`);
+const server = http.createServer(app);
+
+const wss = new WebSocketServer({ server });
+
+wss.on("connection", (ws) => {
+    console.log("Cliente WebSocket conectado");
+
+    ws.on("message", (message) => {
+        console.log("Mensaje recibido:", message);
+    });
 });
+
+server.listen(PORT, () => {
+    console.log(`Servidor http y websocket corriendo en el puerto ${PORT}`);
+});
+
+export { wss };

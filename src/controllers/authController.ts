@@ -4,13 +4,14 @@ import jwt from "jsonwebtoken";
 
 export const login = async (req: Request, res: Response): Promise<void> => {
     try {
-        const { email, password } = req.body;
-        if (!(email && password))
+        const { username, password } = req.body;
+        if (!(username && password))
             res.status(400).json({
                 message: "Todos los campos son obligatorios",
             });
 
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ username });
+        console.log("Ruben: user", user);
         if (!user) {
             res.status(404).json({ message: "Usuario no encontrado" });
             return;
