@@ -12,15 +12,15 @@ const server = http.createServer(app);
 const wss = new WebSocketServer({ server });
 
 wss.on("connection", (ws) => {
-    console.log("Cliente WebSocket conectado");
+  console.log("Cliente WebSocket conectado");
 
-    ws.on("message", (message) => {
-        console.log("Mensaje recibido:", message);
-    });
+  ws.on("message", (message) => {
+    console.log("Mensaje recibido:", message);
+  });
 });
 
-server.listen(PORT, () => {
-    console.log(`Servidor http y websocket corriendo en el puerto ${PORT}`);
+server.listen(PORT, "0.0.0.0", () => {
+  console.log(`Servidor http y websocket corriendo en el puerto ${PORT}`);
 });
 
 export { wss };
