@@ -55,7 +55,8 @@ const connectDB = () => __awaiter(void 0, void 0, void 0, function* () {
         const user = process.env.USER;
         const password = process.env.PASSWORD;
         const dbName = process.env.DB_NAME;
-        const mongoURI = `mongodb://${user}:${password}@127.0.0.1:27017/${dbName}?authSource=admin`;
+        const mongoURI = process.env.MONGO_URI || "";
+        // const mongoURI =  `mongodb://${user}:${password}@127.0.0.1:27017/${dbName}?authSource=admin`;
         console.log("Ruben: mongoURI", mongoURI);
         yield mongoose_1.default.connect(mongoURI);
         console.log("MongoDB conectado");
