@@ -26,11 +26,13 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.getUsers = getUsers;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        console.log("Ruben: req.body", req.body);
         const user = yield user_1.default.create(req.body);
         res.status(201).json({ user });
     }
     catch (error) {
-        res.status(500).json({ message: "Error al crear usuario" });
+        console.log("Ruben: error", error);
+        res.status(500).json(error);
     }
 });
 exports.createUser = createUser;
